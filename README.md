@@ -5,6 +5,17 @@
 Chrome Extension, TypeScript and Visual Studio Code
 
 for yapi to model
+
+## Install Chrome Extension
+
+1. Download the release file _[dist.zip](https://github.com/uniquker/chrome-extension-api-to-model/raw/master/dist.zip)_
+
+2. Unzip the _dist.zip_ file.
+
+3. Click the `Load unpacked` button in `chrome://extensions/` page and choose _dist_ folder.
+
+4. Open yapi website will can use.
+
 ## Prerequisites
 
 * [node + npm](https://nodejs.org/) (Current Version)
