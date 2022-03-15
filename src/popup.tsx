@@ -40,7 +40,7 @@ const Popup = () => {
       //   );
       // }
 			const id = tab?.url?.substr(tab?.url?.lastIndexOf('/') + 1)
-			const u = new URL(tab?.url)
+			const u = new URL(tab?.url || '')
 			// http://47.108.216.191:3001/api/interface/get?id=1274
 			jquery.ajax({
 				type: 'GET',
@@ -52,13 +52,22 @@ const Popup = () => {
 				success: (res: any) => {
 					// console.log(res)
 					(typeof res?.data === 'object' ? [res?.data]: res?.list || []).map((v : any) => {
+						let req = {}, resp = {}
+						try{
+							req = JSON.parse(v.req_body_other || '')
+						}catch(e) {
+						}
+						try{
+							resp = JSON.parse(v.res_body || '')
+						}catch(e) {
+						}
 						const item = {
 							title: v.title,
 							path: v.path,
 							requestType: v.req_body_type,
-							request: JSON.parse(v.req_body_other),
+							request: req,
 							responseType: v.res_body_type,
-							response: JSON.parse(v.res_body)
+							response: resp
 						} as ApiModel;
 						setApiList([...apiList, item]);
 					})
@@ -72,8 +81,8 @@ const Popup = () => {
 		return apiList.map((v: ApiModel) => {
 			let requestStr = '', properties = (v.request?.properties?.query?.properties || {}) as any;
 			let responseStr = '', responseProperties = (v.response?.properties?.data?.properties || {}) as any;
-			requestStr = parseObject(properties, 1);
-			responseStr = parseObject(responseProperties, 1);
+			requestStr = parseObject(properties, 1, v.request?.properties?.query?.required || []);
+			responseStr = parseObject(responseProperties, 1, v.response?.properties?.data?.required || []);
 			let box = <div className="box">
 				<p>{v.title}</p>
 				<div>{v.path}</div>
