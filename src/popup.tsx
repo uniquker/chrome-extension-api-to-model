@@ -80,9 +80,9 @@ const Popup = () => {
 	function parseTsModel(){
 		return apiList.map((v: ApiModel) => {
 			let requestStr = '', properties = (v.request?.properties?.query?.properties || {}) as any;
-			let responseStr = '', responseProperties = (v.response?.properties?.data?.properties || {}) as any;
+			let responseStr = '', responseProperties = (v.response?.properties?.data?.properties || v.response?.properties?.data?.items?.properties || {}) as any;
 			requestStr = parseObject(properties, 1, v.request?.properties?.query?.required || []);
-			responseStr = parseObject(responseProperties, 1, v.response?.properties?.data?.required || []);
+			responseStr = parseObject(responseProperties, 1, v.response?.properties?.data?.required || v.response?.properties?.data?.items?.required || []);
 			let box = <div className="box">
 				<p>{v.title}</p>
 				<div>{v.path}</div>
