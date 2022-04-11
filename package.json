@@ -1,7 +1,7 @@
 {
-  "name": "chrome-extension-typescript-starter",
+  "name": "chrome-extension-api-to-model",
   "version": "1.0.0",
-  "description": "chrome-extension-typescript-starter",
+  "description": "chrome-extension-api-to-model",
   "main": "index.js",
   "scripts": {
     "watch": "webpack --config webpack/webpack.dev.js --watch",
@@ -14,7 +14,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chibat/chrome-extension-typescript-starter.git"
+    "url": "https://github.com/uniquker/chrome-extension-api-to-model.git"
   },
   "dependencies": {
     "jquery": "^3.6.0",
